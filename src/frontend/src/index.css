@@ -77,3 +77,74 @@
     oklch(0.94 0.04 205 / 0.4) 100%
   );
 }
+
+/* Ink blob decorations */
+@keyframes floatBlob {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes floatBlob2 {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(15px) scale(0.95);
+  }
+}
+
+@keyframes inkDrop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+}
+
+.ink-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  mix-blend-mode: screen;
+  animation: inkDrop 2s ease forwards;
+}
+
+.ink-blob-1 {
+  width: 400px;
+  height: 400px;
+  background: oklch(0.52 0.13 205 / 0.5);
+  top: -80px;
+  left: -100px;
+  animation: floatBlob 6s ease-in-out infinite, inkDrop 2s ease forwards;
+}
+
+.ink-blob-2 {
+  width: 300px;
+  height: 300px;
+  background: oklch(0.72 0.19 45 / 0.4);
+  bottom: -60px;
+  right: -80px;
+  animation: floatBlob2 7s ease-in-out infinite, inkDrop 2.5s ease forwards;
+}
+
+.ink-blob-3 {
+  width: 200px;
+  height: 200px;
+  background: oklch(0.75 0.18 300 / 0.4);
+  top: 40%;
+  right: 20%;
+  animation: floatBlob 8s ease-in-out infinite 1s, inkDrop 3s ease forwards;
+}
