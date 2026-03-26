@@ -1,3 +1,4 @@
+import logoUrl from "@/assets/logo.jpg";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -6,6 +7,7 @@ const navLinks = [
   { to: "/" as const, label: "Home" },
   { to: "/about" as const, label: "About" },
   { to: "/services" as const, label: "Services" },
+  { to: "/gallery" as const, label: "Gallery" },
   { to: "/pricing" as const, label: "Pricing" },
   { to: "/reviews" as const, label: "Reviews" },
   { to: "/faq" as const, label: "FAQ" },
@@ -20,12 +22,28 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border shadow-xs">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
-        <Link to="/" data-ocid="nav.link" onClick={() => setMobileOpen(false)}>
+        <Link
+          to="/"
+          data-ocid="nav.link"
+          onClick={() => setMobileOpen(false)}
+          className="flex items-center gap-2"
+        >
           <img
-            src="/assets/uploads/img_20250924_081057_396-019d253e-352e-7773-9acb-97c95c3b2cfa-1.webp"
+            src={logoUrl}
             alt="Mahaveer Crafting Logo"
             className="h-12 w-auto object-contain"
           />
+          <div className="flex flex-col leading-tight">
+            <span
+              className="font-bold text-base text-primary"
+              style={{ fontFamily: "'Fraunces', serif" }}
+            >
+              Mahaveer Crafting
+            </span>
+            <span className="text-xs text-muted-foreground hidden sm:block">
+              DTF Printing Experts
+            </span>
+          </div>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">

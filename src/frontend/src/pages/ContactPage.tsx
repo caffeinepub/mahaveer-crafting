@@ -1,3 +1,4 @@
+import logoUrl from "@/assets/logo.jpg";
 import { MapPin, Phone } from "lucide-react";
 import { motion } from "motion/react";
 import { SiFacebook, SiInstagram, SiWhatsapp } from "react-icons/si";
@@ -14,7 +15,7 @@ export function ContactPage() {
         className="text-center mb-10"
       >
         <img
-          src="/assets/uploads/img_20250924_081057_396-019d253e-352e-7773-9acb-97c95c3b2cfa-1.webp"
+          src={logoUrl}
           alt="Mahaveer Crafting"
           className="h-20 w-auto mx-auto mb-4 object-contain"
         />

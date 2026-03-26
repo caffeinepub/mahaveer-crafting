@@ -1,3 +1,4 @@
+import logoUrl from "@/assets/logo.jpg";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { CheckCircle, Globe, Phone, Shield, Zap } from "lucide-react";
@@ -42,7 +43,7 @@ export function HomePage() {
             transition={{ duration: 0.6 }}
           >
             <img
-              src="/assets/uploads/img_20250924_081057_396-019d253e-352e-7773-9acb-97c95c3b2cfa-1.webp"
+              src={logoUrl}
               alt="Mahaveer Crafting"
               className="h-32 w-auto mx-auto mb-6 object-contain drop-shadow-lg"
             />

@@ -8,6 +8,17 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const _CaffeineStorageCreateCertificateResult = IDL.Record({
+  'method' : IDL.Text,
+  'blob_hash' : IDL.Text,
+});
+export const _CaffeineStorageRefillInformation = IDL.Record({
+  'proposed_top_up_amount' : IDL.Opt(IDL.Nat),
+});
+export const _CaffeineStorageRefillResult = IDL.Record({
+  'success' : IDL.Opt(IDL.Bool),
+  'topped_up_amount' : IDL.Opt(IDL.Nat),
+});
 export const QuoteRequest = IDL.Record({
   'name' : IDL.Text,
   'orderType' : IDL.Text,
@@ -17,9 +28,59 @@ export const QuoteRequest = IDL.Record({
   'quantity' : IDL.Nat,
   'phone' : IDL.Text,
 });
+export const GalleryItem = IDL.Record({
+  'id' : IDL.Nat,
+  'title' : IDL.Text,
+  'imageUrl' : IDL.Text,
+  'category' : IDL.Text,
+  'uploadedAt' : IDL.Int,
+});
 
 export const idlService = IDL.Service({
+  '_caffeineStorageBlobIsLive' : IDL.Func(
+      [IDL.Vec(IDL.Nat8)],
+      [IDL.Bool],
+      ['query'],
+    ),
+  '_caffeineStorageBlobsToDelete' : IDL.Func(
+      [],
+      [IDL.Vec(IDL.Vec(IDL.Nat8))],
+      ['query'],
+    ),
+  '_caffeineStorageConfirmBlobDeletion' : IDL.Func(
+      [IDL.Vec(IDL.Vec(IDL.Nat8))],
+      [],
+      [],
+    ),
+  '_caffeineStorageCreateCertificate' : IDL.Func(
+      [IDL.Text],
+      [_CaffeineStorageCreateCertificateResult],
+      [],
+    ),
+  '_caffeineStorageRefillCashier' : IDL.Func(
+      [IDL.Opt(_CaffeineStorageRefillInformation)],
+      [_CaffeineStorageRefillResult],
+      [],
+    ),
+  '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
+  'addGalleryItem' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Text, IDL.Tuple(IDL.Text, IDL.Text)],
+      [IDL.Nat],
+      [],
+    ),
+  'adminLogin' : IDL.Func([IDL.Tuple(IDL.Text, IDL.Text)], [IDL.Bool], []),
+  'deleteGalleryItem' : IDL.Func(
+      [IDL.Nat, IDL.Tuple(IDL.Text, IDL.Text)],
+      [],
+      [],
+    ),
   'getAllQuoteRequests' : IDL.Func([], [IDL.Vec(QuoteRequest)], ['query']),
+  'getGalleryItems' : IDL.Func([], [IDL.Vec(GalleryItem)], ['query']),
+  'getGalleryItemsByCategory' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(GalleryItem)],
+      ['query'],
+    ),
   'getQuoteRequest' : IDL.Func([IDL.Nat], [QuoteRequest], ['query']),
   'submitQuoteRequest' : IDL.Func([QuoteRequest], [IDL.Nat], []),
 });
@@ -27,6 +88,17 @@ export const idlService = IDL.Service({
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const _CaffeineStorageCreateCertificateResult = IDL.Record({
+    'method' : IDL.Text,
+    'blob_hash' : IDL.Text,
+  });
+  const _CaffeineStorageRefillInformation = IDL.Record({
+    'proposed_top_up_amount' : IDL.Opt(IDL.Nat),
+  });
+  const _CaffeineStorageRefillResult = IDL.Record({
+    'success' : IDL.Opt(IDL.Bool),
+    'topped_up_amount' : IDL.Opt(IDL.Nat),
+  });
   const QuoteRequest = IDL.Record({
     'name' : IDL.Text,
     'orderType' : IDL.Text,
@@ -36,9 +108,59 @@ export const idlFactory = ({ IDL }) => {
     'quantity' : IDL.Nat,
     'phone' : IDL.Text,
   });
+  const GalleryItem = IDL.Record({
+    'id' : IDL.Nat,
+    'title' : IDL.Text,
+    'imageUrl' : IDL.Text,
+    'category' : IDL.Text,
+    'uploadedAt' : IDL.Int,
+  });
   
   return IDL.Service({
+    '_caffeineStorageBlobIsLive' : IDL.Func(
+        [IDL.Vec(IDL.Nat8)],
+        [IDL.Bool],
+        ['query'],
+      ),
+    '_caffeineStorageBlobsToDelete' : IDL.Func(
+        [],
+        [IDL.Vec(IDL.Vec(IDL.Nat8))],
+        ['query'],
+      ),
+    '_caffeineStorageConfirmBlobDeletion' : IDL.Func(
+        [IDL.Vec(IDL.Vec(IDL.Nat8))],
+        [],
+        [],
+      ),
+    '_caffeineStorageCreateCertificate' : IDL.Func(
+        [IDL.Text],
+        [_CaffeineStorageCreateCertificateResult],
+        [],
+      ),
+    '_caffeineStorageRefillCashier' : IDL.Func(
+        [IDL.Opt(_CaffeineStorageRefillInformation)],
+        [_CaffeineStorageRefillResult],
+        [],
+      ),
+    '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
+    'addGalleryItem' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Tuple(IDL.Text, IDL.Text)],
+        [IDL.Nat],
+        [],
+      ),
+    'adminLogin' : IDL.Func([IDL.Tuple(IDL.Text, IDL.Text)], [IDL.Bool], []),
+    'deleteGalleryItem' : IDL.Func(
+        [IDL.Nat, IDL.Tuple(IDL.Text, IDL.Text)],
+        [],
+        [],
+      ),
     'getAllQuoteRequests' : IDL.Func([], [IDL.Vec(QuoteRequest)], ['query']),
+    'getGalleryItems' : IDL.Func([], [IDL.Vec(GalleryItem)], ['query']),
+    'getGalleryItemsByCategory' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(GalleryItem)],
+        ['query'],
+      ),
     'getQuoteRequest' : IDL.Func([IDL.Nat], [QuoteRequest], ['query']),
     'submitQuoteRequest' : IDL.Func([QuoteRequest], [IDL.Nat], []),
   });

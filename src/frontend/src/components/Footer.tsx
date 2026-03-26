@@ -1,3 +1,4 @@
+import logoUrl from "@/assets/logo.jpg";
 import { Link } from "@tanstack/react-router";
 import { MapPin, Phone } from "lucide-react";
 import { SiFacebook, SiInstagram, SiWhatsapp } from "react-icons/si";
@@ -12,7 +13,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="flex flex-col items-start gap-3">
           <img
-            src="/assets/uploads/img_20250924_081057_396-019d253e-352e-7773-9acb-97c95c3b2cfa-1.webp"
+            src={logoUrl}
             alt="Mahaveer Crafting Logo"
             className="h-16 w-auto object-contain bg-white rounded-lg p-1"
           />

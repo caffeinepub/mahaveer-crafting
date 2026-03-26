@@ -1,3 +1,4 @@
+import logoUrl from "@/assets/logo.jpg";
 import { Building2, CheckCircle, Target } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -27,7 +28,7 @@ export function AboutPage() {
         className="text-center mb-12"
       >
         <img
-          src="/assets/uploads/img_20250924_081057_396-019d253e-352e-7773-9acb-97c95c3b2cfa-1.webp"
+          src={logoUrl}
           alt="Mahaveer Crafting"
           className="h-24 w-auto mx-auto mb-4 object-contain"
         />
